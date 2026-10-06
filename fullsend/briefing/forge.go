@@ -172,3 +172,33 @@ type PriorFinding struct {
 	Fact      string `json:"fact"`
 	Body      string `json:"body"`
 }
+
+// FixRead is a human-triggered fix run's forge read: the pull request, the /fs-fix instruction, the iteration
+// count the pre-script checked, the diff and the findings the fix addresses.
+type FixRead struct {
+	Read
+	PR               PullRequest      `json:"pr"`
+	Trigger          Trigger          `json:"trigger"`
+	HumanInstruction HumanInstruction `json:"human_instruction"`
+	Iteration        Iteration        `json:"iteration"`
+	Diff             []FileDiff       `json:"diff"`
+	PriorFindings    []PriorFinding   `json:"prior_findings"`
+}
+
+// HumanInstruction is the free text after /fs-fix, which fullsend passes as HUMAN_INSTRUCTION, with the comment it
+// came from and its author's current permission.
+type HumanInstruction struct {
+	CommentID  int    `json:"comment_id"`
+	Author     string `json:"author"`
+	Permission string `json:"permission"`
+	At         string `json:"at"`
+	Body       string `json:"body"`
+}
+
+// Iteration is the fix loop's count against its caps, which the harness pre-script enforces.
+type Iteration struct {
+	Human    int `json:"human"`
+	Total    int `json:"total"`
+	HumanCap int `json:"human_cap"`
+	BotCap   int `json:"bot_cap"`
+}

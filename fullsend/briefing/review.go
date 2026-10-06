@@ -32,13 +32,13 @@ func ReviewSecurity(f PullRead, route, profile []byte, input int) Snapshot {
 	scope := task
 	scope.User, scope.Session, scope.Step = trig.Actor, "run:"+f.RunID, "review-security"
 
-	memory, conflicts := reviewMemory(f, task)
+	memory, conflicts := findings(f.PriorFindings, f.Checks, task, "security finding from an earlier review of this PR")
 	batches := append(governance(f.Read),
 		reviewState(f, task),
 		query(f.Read, task, "query:review-security/run-"+f.RunID, trig.At, fmt.Sprintf(
 			"Review the security of %s#%d at head %s. Re-verify each prior finding against the current diff "+
 				"and answer with the review dimension result object.", f.Repo, pr.Number, pr.HeadSHA)),
-		diff(f, task), checks(f, task), memory)
+		diff(f.PR, f.Diff, f.ReadAt, task), checks(f, task), memory)
 	return freeze(f.Read, scope, route, profile, input, batches, conflicts)
 }
 
@@ -68,12 +68,12 @@ func reviewState(f PullRead, task Scope) Batch {
 // diff emits one item per changed file at the head (R-13), scored by path risk. A diffstat variant (R-18) lets a
 // low-risk file shrink before anything is dropped; a high-risk file gets none, because on a security route a
 // diffstat of it is too lossy to review from, so it is kept whole or not at all.
-func diff(f PullRead, task Scope) Batch {
-	head := f.PR.HeadSHA
+func diff(pr PullRequest, files []FileDiff, readAt string, task Scope) Batch {
+	head := pr.HeadSHA
 	var items []Item
-	for _, d := range f.Diff {
+	for _, d := range files {
 		it := newItem(fmt.Sprintf("diff:%s@%s", d.Path, head), "evidence.tool_results",
-			fmt.Sprintf("forge:pr/%d/file/%s", f.PR.Number, d.Path), head, "observation", f.ReadAt, d.Hunk)
+			fmt.Sprintf("forge:pr/%d/file/%s", pr.Number, d.Path), head, "observation", readAt, d.Hunk)
 		it.Relevance, it.InjectionRisk, it.Scope = score(pathRisk(d.Path)), "untrusted_content", &task
 		it.Eligibility = "changed file at head, ranked by path risk"
 		if !strings.HasSuffix(d.Path, "_test.go") && pathRisk(d.Path) < 0.9 {
@@ -99,14 +99,15 @@ func checks(f PullRead, task Scope) Batch {
 	return batch("ci-checks", "retrieval", items)
 }
 
-// reviewMemory is earlier reviews' findings on this pull request. A finding a human dismissed is revoked: not
-// emitted, but reported (R-9, R-14). A finding that is a factual claim joins a declared fact group with the latest
-// run of the check it is about, and route precedence decides between them, never the wording (R-11).
-func reviewMemory(f PullRead, task Scope) (Batch, []ConflictGroup) {
+// findings is earlier reviews' findings on this pull request, as memory for a re-review or a fix. A finding a human
+// dismissed is revoked: not emitted, but reported (R-9, R-14). A finding that is a factual claim joins a declared
+// fact group with the latest run of the check it is about, and route precedence decides between them, never the
+// wording (R-11).
+func findings(prior []PriorFinding, checks []Check, task Scope, eligibility string) (Batch, []ConflictGroup) {
 	var items []Item
 	var revoked []Exclusion
 	var groups []ConflictGroup
-	for _, p := range f.PriorFindings {
+	for _, p := range prior {
 		id := fmt.Sprintf("run:review/%s#%s", p.Run, p.ID)
 		if p.RevokedBy != "" {
 			revoked = append(revoked, Exclusion{ItemID: id, Reason: "revoked", Stage: "producer"})
@@ -114,13 +115,13 @@ func reviewMemory(f PullRead, task Scope) (Batch, []ConflictGroup) {
 		}
 		it := newItem(id, "interaction.memory", "run:review/"+p.Run, p.Run, "generated", p.At, p.Body)
 		it.Expires, it.Lineage, it.InjectionRisk, it.Scope = p.Expires, "summarised", "untrusted_content", &task
-		it.Eligibility = "security finding from an earlier review of this PR"
+		it.Eligibility = eligibility
 		if p.Fact != "" {
 			// A factual claim, not a finding. The security route raises memory to protected so findings are never
 			// shed; in a slot only the route raised, an item may lower its own tier (R-16), so this claim can
 			// still lose its fact group to fresher CI.
 			it.Tier = "compressible"
-			if latest, ok := latestCheck(f.Checks, "unit-tests"); ok {
+			if latest, ok := latestCheck(checks, "unit-tests"); ok {
 				groups = append(groups, ConflictGroup{ID: "fact:" + p.Fact, Kind: "fact", Fact: p.Fact,
 					Items: []string{id, fmt.Sprintf("ci:%s@%s", latest.Name, latest.HeadSHA)}})
 			}

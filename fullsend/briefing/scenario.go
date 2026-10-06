@@ -75,6 +75,12 @@ func (in *Integration) Snapshot(sc Scenario) (Snapshot, error) {
 			return Snapshot{}, err
 		}
 		return ReviewSecurity(f, route, profile, sc.BudgetInput), nil
+	case "fix":
+		var f FixRead
+		if err := readJSON(fixture, &f); err != nil {
+			return Snapshot{}, err
+		}
+		return Fix(f, route, profile, sc.BudgetInput), nil
 	}
 	return Snapshot{}, fmt.Errorf("no producers for agent %q", sc.Agent)
 }
@@ -94,7 +100,8 @@ func (in *Integration) Run(name string) (Snapshot, Result, error) {
 }
 
 // Files is every generated file of a scenario as it should be committed; a nil value is a file that must not exist.
-// A refused scenario has no payload.json. The trace is stored without trace_id and timings, which may differ run to
+// before.md and briefing.md are for people; snapshot.json, trace.json and payload.json are the machine record. A
+// refused scenario has no payload.json. The trace is stored without trace_id and timings, which may differ run to
 // run (R-23).
 func (in *Integration) Files(name string) (map[string][]byte, error) {
 	snap, res, err := in.Run(name)
@@ -107,7 +114,15 @@ func (in *Integration) Files(name string) (map[string][]byte, error) {
 			trace[k] = v
 		}
 	}
-	files := map[string][]byte{"payload.json": res.Payload, "explain.txt": []byte(Explain(res.Trace))}
+	before, err := in.Before(name)
+	if err != nil {
+		return nil, err
+	}
+	page, err := BriefingPage(name, snap, res)
+	if err != nil {
+		return nil, err
+	}
+	files := map[string][]byte{"payload.json": res.Payload, "before.md": []byte(before), "briefing.md": []byte(page)}
 	if files["snapshot.json"], err = indent(snap); err != nil {
 		return nil, err
 	}

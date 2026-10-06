@@ -8,8 +8,8 @@
     "step": "review-security"
   },
   "budget": {
-    "input": 680,
-    "reserved_output": 199320,
+    "input": 760,
+    "reserved_output": 199240,
     "margin_percent": 20
   },
   "profile": {
@@ -411,7 +411,7 @@
           "lineage": "verbatim",
           "injection_risk": "none",
           "eligibility": "read from the protected base branch at a pinned SHA, never from the PR head",
-          "body": "Repository rules for agents: changes under internal/security, internal/mint or internal/runtime require a CODEOWNERS approval in addition to agent review. Never suggest weakening a sandbox policy."
+          "body": "Repository rules for agents: work that touches internal/security, internal/mint or internal/runtime needs a maintainer's approval. Such an issue is never ready-to-code without a maintainer comment saying so, and such a change needs a CODEOWNERS review in addition to agent review. Never suggest weakening a sandbox policy. Use the issue-labels skill vocabulary for labels. Breaking changes need the ! suffix in PR titles."
         }
       ],
       "excluded": []

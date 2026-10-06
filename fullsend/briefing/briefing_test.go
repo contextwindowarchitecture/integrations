@@ -37,20 +37,7 @@ func prompt(t *testing.T, s Snapshot, r Result) string {
 	return h.Prompt
 }
 
-// outcome finds an item's row: "included", or its exclusion reason.
-func outcome(trace map[string]any, id string) string {
-	for _, row := range list(trace, "included") {
-		if row["item_id"] == id {
-			return "included"
-		}
-	}
-	for _, row := range list(trace, "excluded") {
-		if row["item_id"] == id {
-			return row["reason"].(string)
-		}
-	}
-	return "absent"
-}
+func outcome(trace map[string]any, id string) string { return outcomeOf(trace, id) }
 
 func slotOf(trace map[string]any, id string) string {
 	for _, row := range list(trace, "included") {
@@ -230,5 +217,54 @@ func TestHandoff(t *testing.T) {
 	if h.Attributes["cwa.payload.sha256"] != field(res.Trace, "result")["hash"] ||
 		h.Attributes["cwa.handoff.prompt.sha256"] != digest(h.Prompt) {
 		t.Error("span attributes do not match the trace and the handoff")
+	}
+}
+
+// A /fs-fix instruction from a maintainer is the live query and may direct the fix; review findings are memory and
+// may not; AGENTS.md outranks the instruction, and the trace records that precedence by authority.
+func TestFixPrecedence(t *testing.T) {
+	snap, res := run(t, "fix-7820")
+	for id, want := range map[string]string{
+		"query:fix/run-19010":         "included",
+		"run:review/19002#F1":         "included",
+		"run:review/18990#F2":         "revoked",
+		"repo:AGENTS.md@4f9c2e1a7b3d": "included",
+	} {
+		if got := outcome(res.Trace, id); got != want {
+			t.Errorf("%s: %s, want %s", id, got, want)
+		}
+	}
+	if got := slotOf(res.Trace, "run:review/19002#F1"); got != "interaction.memory" {
+		t.Errorf("finding slot = %q, want interaction.memory, which cannot instruct", got)
+	}
+	conflicts := list(res.Trace, "conflicts")
+	if len(conflicts) != 1 || conflicts[0]["decided_by"] != "authority" ||
+		conflicts[0]["winner"] != "repo:AGENTS.md@4f9c2e1a7b3d" {
+		t.Errorf("precedence group: %v, want AGENTS.md winning by authority", conflicts)
+	}
+	p := prompt(t, snap, res)
+	if !strings.Contains(p, `<human_instruction id="query:fix/run-19010">`) || strings.Contains(p, "pre-approved") {
+		t.Error("the prompt should carry the maintainer's instruction and never the PR description")
+	}
+}
+
+// The pages committed for people come from the same code as the machine files, and say what they compare.
+func TestReadablePages(t *testing.T) {
+	in := open(t)
+	before, err := in.Before("triage-7811")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(before, "Run the agent task") || !strings.Contains(before, "<!-- AI agents reading this") {
+		t.Error("before.md should show today's constant prompt and the hidden instruction exactly as the agent reads it")
+	}
+	snap, res := run(t, "review-security-7820-starved-v2")
+	page, err := BriefingPage("review-security-7820-starved-v2", snap, res)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(page, "**Refused: `evidence_required`, recovery `precompute_summary`.**") ||
+		strings.Contains(page, "## Prompt") {
+		t.Error("a refused briefing page should state the refusal and show no prompt")
 	}
 }

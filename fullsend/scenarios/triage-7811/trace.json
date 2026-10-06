@@ -10,7 +10,7 @@
     "assembly_time": "2026-10-06T14:00:00Z",
     "renderer": "cwa-messages/v1",
     "route_policy_version": "fullsend-triage/v1",
-    "snapshot_digest": "1183b9e278414125a42ae37b7560b35884ed2be60880528d9327a1092e7fd793",
+    "snapshot_digest": "84393a480505718838c840f459302bf63ec0e98ddf50d075aa9ec934b284c56d",
     "spec": "cwa/draft",
     "tokenizer": "estimate-utf8/v1"
   },
@@ -385,14 +385,14 @@
       "item_id": "agent:triage@a17be03",
       "slot": "governance.instructions",
       "source_version": "a17be03",
-      "tokens": 143
+      "tokens": 162
     },
     {
       "eligibility": "read from the protected base branch at a pinned SHA, never from the PR head",
       "item_id": "repo:AGENTS.md@4f9c2e1a7b3d",
       "slot": "governance.instructions",
       "source_version": "4f9c2e1a7b3d",
-      "tokens": 61
+      "tokens": 106
     },
     {
       "eligibility": "harness validation_loop.schema (ADR 0022)",
@@ -502,7 +502,7 @@
     "reason": null
   },
   "result": {
-    "hash": "5a4e76eccc7db041a0e585d93fc451630f6ca1c73c740db63c7314bb00c0023b",
-    "input_tokens": 1099
+    "hash": "1c85ff4893f306e52c9a109dd06cba96cef111e9b8c5d7d77db96ab492d65506",
+    "input_tokens": 1162
   }
 }

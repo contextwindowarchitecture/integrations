@@ -7,93 +7,49 @@
   "compressed": [],
   "conflicts": [
     {
-      "decided_by": "policy",
-      "group_id": "fact:ci.unit-tests.status",
+      "decided_by": "authority",
+      "group_id": "instruction:repo-rules-over-request",
       "items": [
-        "ci:unit-tests@abc1230f",
-        "run:review/18990#F3"
+        "query:fix/run-19010",
+        "repo:AGENTS.md@4f9c2e1a7b3d"
       ],
-      "kind": "fact",
+      "kind": "instruction",
       "resolution": "resolved",
-      "winner": "ci:unit-tests@abc1230f"
+      "winner": "repo:AGENTS.md@4f9c2e1a7b3d"
     }
   ],
   "context": {
-    "assembly_time": "2026-10-06T14:00:00Z",
+    "assembly_time": "2026-10-06T15:30:00Z",
     "renderer": "cwa-messages/v1",
-    "route_policy_version": "fullsend-review-security/v2",
-    "snapshot_digest": "ea0fd2b8ae9bafea2435ccbbaf2c51b4af7a00574f6d6c3643863913b410c6e0",
+    "route_policy_version": "fullsend-fix/v1",
+    "snapshot_digest": "839c673db46f18ddbba99c7a41398ea1b0ed41933fa3ad440923bfa0fbcb6a22",
     "spec": "cwa/draft",
     "tokenizer": "estimate-utf8/v1"
   },
   "defaults_filled": [
     {
       "field": "token_budget",
-      "item_id": "agent:review-security@a17be03"
+      "item_id": "agent:fix@a17be03"
     },
     {
       "field": "variants",
-      "item_id": "agent:review-security@a17be03"
+      "item_id": "agent:fix@a17be03"
     },
     {
       "field": "conflict_policy",
-      "item_id": "agent:review-security@a17be03"
+      "item_id": "agent:fix@a17be03"
     },
     {
       "field": "token_budget",
-      "item_id": "ci:unit-tests@9f1e77aa"
+      "item_id": "contract:fix-result/v2"
     },
     {
       "field": "variants",
-      "item_id": "ci:unit-tests@9f1e77aa"
+      "item_id": "contract:fix-result/v2"
     },
     {
       "field": "conflict_policy",
-      "item_id": "ci:unit-tests@9f1e77aa"
-    },
-    {
-      "field": "lineage",
-      "item_id": "ci:unit-tests@9f1e77aa"
-    },
-    {
-      "field": "token_budget",
-      "item_id": "ci:unit-tests@abc1230f"
-    },
-    {
-      "field": "variants",
-      "item_id": "ci:unit-tests@abc1230f"
-    },
-    {
-      "field": "conflict_policy",
-      "item_id": "ci:unit-tests@abc1230f"
-    },
-    {
-      "field": "lineage",
-      "item_id": "ci:unit-tests@abc1230f"
-    },
-    {
-      "field": "token_budget",
-      "item_id": "contract:review-dimension-result/v2"
-    },
-    {
-      "field": "variants",
-      "item_id": "contract:review-dimension-result/v2"
-    },
-    {
-      "field": "conflict_policy",
-      "item_id": "contract:review-dimension-result/v2"
-    },
-    {
-      "field": "token_budget",
-      "item_id": "diff:docs/guides/user/runtime-flags.md@abc1230f"
-    },
-    {
-      "field": "conflict_policy",
-      "item_id": "diff:docs/guides/user/runtime-flags.md@abc1230f"
-    },
-    {
-      "field": "lineage",
-      "item_id": "diff:docs/guides/user/runtime-flags.md@abc1230f"
+      "item_id": "contract:fix-result/v2"
     },
     {
       "field": "token_budget",
@@ -129,19 +85,19 @@
     },
     {
       "field": "token_budget",
-      "item_id": "query:review-security/run-19002"
+      "item_id": "query:fix/run-19010"
     },
     {
       "field": "variants",
-      "item_id": "query:review-security/run-19002"
+      "item_id": "query:fix/run-19010"
     },
     {
       "field": "conflict_policy",
-      "item_id": "query:review-security/run-19002"
+      "item_id": "query:fix/run-19010"
     },
     {
       "field": "lineage",
-      "item_id": "query:review-security/run-19002"
+      "item_id": "query:fix/run-19010"
     },
     {
       "field": "token_budget",
@@ -157,27 +113,15 @@
     },
     {
       "field": "token_budget",
-      "item_id": "run:review/18990#F1"
+      "item_id": "run:review/19002#F1"
     },
     {
       "field": "variants",
-      "item_id": "run:review/18990#F1"
+      "item_id": "run:review/19002#F1"
     },
     {
       "field": "conflict_policy",
-      "item_id": "run:review/18990#F1"
-    },
-    {
-      "field": "token_budget",
-      "item_id": "run:review/18990#F3"
-    },
-    {
-      "field": "variants",
-      "item_id": "run:review/18990#F3"
-    },
-    {
-      "field": "conflict_policy",
-      "item_id": "run:review/18990#F3"
+      "item_id": "run:review/19002#F1"
     },
     {
       "field": "token_budget",
@@ -201,43 +145,43 @@
     },
     {
       "field": "token_budget",
-      "item_id": "state:requester"
+      "item_id": "state:fix-iteration"
     },
     {
       "field": "variants",
-      "item_id": "state:requester"
+      "item_id": "state:fix-iteration"
     },
     {
       "field": "conflict_policy",
-      "item_id": "state:requester"
+      "item_id": "state:fix-iteration"
     },
     {
       "field": "lineage",
-      "item_id": "state:requester"
+      "item_id": "state:fix-iteration"
     },
     {
       "field": "injection_risk",
-      "item_id": "state:requester"
+      "item_id": "state:fix-iteration"
     },
     {
       "field": "token_budget",
-      "item_id": "state:risk-tier1"
+      "item_id": "state:requester"
     },
     {
       "field": "variants",
-      "item_id": "state:risk-tier1"
+      "item_id": "state:requester"
     },
     {
       "field": "conflict_policy",
-      "item_id": "state:risk-tier1"
+      "item_id": "state:requester"
     },
     {
       "field": "lineage",
-      "item_id": "state:risk-tier1"
+      "item_id": "state:requester"
     },
     {
       "field": "injection_risk",
-      "item_id": "state:risk-tier1"
+      "item_id": "state:requester"
     }
   ],
   "excluded": [
@@ -245,28 +189,15 @@
       "item_id": "run:review/18990#F2",
       "reason": "revoked",
       "stage": "producer"
-    },
-    {
-      "item_id": "run:review/18990#F3",
-      "reason": "conflict_lost",
-      "slot": "interaction.memory",
-      "stage": "assembler"
-    },
-    {
-      "item_id": "ci:unit-tests@9f1e77aa",
-      "reason": "superseded",
-      "slot": "evidence.tool_results",
-      "stage": "assembler",
-      "superseded_by": "ci:unit-tests@abc1230f"
     }
   ],
   "included": [
     {
       "eligibility": "agent definition pinned by sha in .fullsend/config.yaml",
-      "item_id": "agent:review-security@a17be03",
+      "item_id": "agent:fix@a17be03",
       "slot": "governance.instructions",
       "source_version": "a17be03",
-      "tokens": 124
+      "tokens": 125
     },
     {
       "eligibility": "read from the protected base branch at a pinned SHA, never from the PR head",
@@ -277,52 +208,38 @@
     },
     {
       "eligibility": "harness validation_loop.schema (ADR 0022)",
-      "item_id": "contract:review-dimension-result/v2",
+      "item_id": "contract:fix-result/v2",
       "slot": "governance.output_contract",
       "source_version": "v2",
-      "tokens": 82
+      "tokens": 89
     },
     {
       "eligibility": "forge read at freeze time",
       "item_id": "state:change-proposal",
       "slot": "state.task",
       "source_version": "abc1230f",
-      "tokens": 40
+      "tokens": 34
     },
     {
-      "eligibility": "pre-script output (ADR 0089 tier 1)",
-      "item_id": "state:risk-tier1",
+      "eligibility": "pre-script iteration cap check",
+      "item_id": "state:fix-iteration",
       "slot": "state.task",
       "source_version": "abc1230f",
-      "tokens": 34
+      "tokens": 22
     },
     {
       "eligibility": "dispatch authorization result",
       "item_id": "state:requester",
       "slot": "state.user",
-      "source_version": "2026-10-06T13:58:00Z",
-      "tokens": 21
+      "source_version": "2026-10-06T15:29:00Z",
+      "tokens": 36
     },
     {
-      "eligibility": "security finding from an earlier review of this PR",
-      "item_id": "run:review/18990#F1",
+      "eligibility": "review finding this fix addresses",
+      "item_id": "run:review/19002#F1",
       "slot": "interaction.memory",
-      "source_version": "18990",
+      "source_version": "19002",
       "tokens": 57
-    },
-    {
-      "eligibility": "check run conclusion",
-      "item_id": "ci:unit-tests@abc1230f",
-      "slot": "evidence.tool_results",
-      "source_version": "abc1230f",
-      "tokens": 10
-    },
-    {
-      "eligibility": "changed file at head, ranked by path risk",
-      "item_id": "diff:docs/guides/user/runtime-flags.md@abc1230f",
-      "slot": "evidence.tool_results",
-      "source_version": "abc1230f",
-      "tokens": 153
     },
     {
       "eligibility": "changed file at head, ranked by path risk",
@@ -339,23 +256,23 @@
       "tokens": 60
     },
     {
-      "eligibility": "templated from the normalized event",
-      "item_id": "query:review-security/run-19002",
+      "eligibility": "HUMAN_INSTRUCTION from /fs-fix comment 91002 by @maintainer-a (permission: write)",
+      "item_id": "query:fix/run-19010",
       "slot": "interaction.query",
       "source_version": "normevent/v1",
-      "tokens": 43
+      "tokens": 46
     }
   ],
   "profile": {
-    "id": "fullsend-review-security-briefing",
-    "version": 2
+    "id": "fullsend-fix-briefing",
+    "version": 1
   },
   "refused": {
     "bool": false,
     "reason": null
   },
   "result": {
-    "hash": "8d2c97d7e8a4e49593e901ccf2064a41d14133af90e3cf26b7a9e6dbe194a9d9",
-    "input_tokens": 967
+    "hash": "94a266f36f4fdfdd1dc6b73c48a2dba650422dbc68cb8afc9856147b09b85157",
+    "input_tokens": 777
   }
 }

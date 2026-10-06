@@ -3,5 +3,5 @@
   "agent": "review-security",
   "fixture": "pr-7820",
   "route_policy": "fullsend-review-security/v2",
-  "budget_input": 680
+  "budget_input": 760
 }

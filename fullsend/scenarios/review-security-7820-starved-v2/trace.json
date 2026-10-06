@@ -1,8 +1,8 @@
 {
   "budget": {
-    "input": 680,
+    "input": 760,
     "margin_percent": 20,
-    "reserved_output": 199320
+    "reserved_output": 199240
   },
   "compressed": [],
   "conflicts": [
@@ -22,7 +22,7 @@
     "assembly_time": "2026-10-06T14:00:00Z",
     "renderer": "cwa-messages/v1",
     "route_policy_version": "fullsend-review-security/v2",
-    "snapshot_digest": "3a7e7cb1c4c2e7df21c3068e50515f1a4b7f9324831aaf4ccd1becec159b46a3",
+    "snapshot_digest": "e121254a41f69eea771734460fad917b6be129442f6891bdc33c6654548b2149",
     "spec": "cwa/draft",
     "tokenizer": "estimate-utf8/v1"
   },

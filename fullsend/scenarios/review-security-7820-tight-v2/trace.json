@@ -1,8 +1,8 @@
 {
   "budget": {
-    "input": 760,
+    "input": 840,
     "margin_percent": 20,
-    "reserved_output": 199240
+    "reserved_output": 199160
   },
   "compressed": [],
   "conflicts": [
@@ -22,7 +22,7 @@
     "assembly_time": "2026-10-06T14:00:00Z",
     "renderer": "cwa-messages/v1",
     "route_policy_version": "fullsend-review-security/v2",
-    "snapshot_digest": "2dc009a65c1ee6052fcf51a3c3e50f4dde55dee363d77c0467cd0da9335d209b",
+    "snapshot_digest": "f0eec6b9e77e99dbfa4cab71e953e4d8626a094e421cc0a6bdd2ef184d70ae23",
     "spec": "cwa/draft",
     "tokenizer": "estimate-utf8/v1"
   },
@@ -291,7 +291,7 @@
       "item_id": "repo:AGENTS.md@4f9c2e1a7b3d",
       "slot": "governance.instructions",
       "source_version": "4f9c2e1a7b3d",
-      "tokens": 49
+      "tokens": 106
     },
     {
       "eligibility": "harness validation_loop.schema (ADR 0022)",
@@ -352,7 +352,7 @@
     "reason": null
   },
   "result": {
-    "hash": "4c4bfca99f6c9c4239fb1833b8f3aa8b2b3697e4157f824b813589d7c4bed42e",
-    "input_tokens": 624
+    "hash": "95a687fe34e28b08f8456fcbcc45eb29fcc9397937f827c94be49f3fefb934e4",
+    "input_tokens": 681
   }
 }
