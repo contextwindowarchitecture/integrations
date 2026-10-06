@@ -1,0 +1,37 @@
+# Every integration's suite on every push. The suite rebuilds each committed scenario from its fixtures and
+# assembles it with the pinned assembler, so a change to a fixture, an agent definition, a route policy or the
+# assembler pin fails here until the scenarios are regenerated and the context diff is committed for review. No
+# model is called. Add a Go integration to the go matrix; an integration in another language gets a job of its own.
+name: ci
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  go:
+    name: ${{ matrix.integration }} (Go)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        integration: ["fullsend"]
+    defaults:
+      run:
+        working-directory: ${{ matrix.integration }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: ${{ matrix.integration }}/go.mod
+          cache-dependency-path: ${{ matrix.integration }}/go.sum
+      - name: gofmt
+        run: test -z "$(gofmt -l .)" || { gofmt -l .; exit 1; }
+      - run: go mod verify
+      - run: go vet ./...
+      - run: go test ./...
+      - run: go run ./cmd/scenarios -check

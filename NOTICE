@@ -1,0 +1,7 @@
+CWA integrations
+Copyright 2026 Melvin Hillsman
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+Each integration depends on a CWA assembler (contextwindowarchitecture/assembler-go and its siblings),
+licensed the same way. The integrated systems are their own projects under their own licenses; fullsend
+(fullsend-ai/fullsend) is Apache-2.0. Repositories, issues, pull requests and people in the fixtures are fictional.
