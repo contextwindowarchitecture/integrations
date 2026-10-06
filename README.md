@@ -18,7 +18,7 @@ flowchart LR
 
 | Integration | Host system | What CWA does there | Language | Status |
 | --- | --- | --- | --- | --- |
-| [fullsend](fullsend/) | [fullsend](https://github.com/fullsend-ai/fullsend), autonomous SDLC agents on Git forges | Assembles each agent's briefing before its sandbox starts: repository permission decides who may instruct, comment floods are capped, memory expires and is revocable, and a budget too small for a security review refuses instead of reviewing blind. The upstream proposal is fullsend's ADR 0133 | Go, [assembler-go](https://github.com/contextwindowarchitecture/assembler-go) | prototype |
+| [fullsend](fullsend/) | [fullsend](https://github.com/fullsend-ai/fullsend), autonomous SDLC agents on Git forges | Assembles each agent's briefing before its sandbox starts: repository permission decides who may instruct, comment floods are capped, memory expires and is revocable, `/fs-fix` instructions direct the fix while `AGENTS.md` still outranks them, and a budget too small for a security review refuses instead of reviewing blind. The upstream proposal is fullsend's ADR 0133 | Go, [assembler-go](https://github.com/contextwindowarchitecture/assembler-go) | prototype |
 
 ## How an integration is laid out
 
