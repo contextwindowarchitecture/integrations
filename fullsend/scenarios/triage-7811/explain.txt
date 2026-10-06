@@ -1,0 +1,28 @@
+profile fullsend-triage-briefing v1 · snapshot 1183b9e278414125a42ae37b7560b35884ed2be60880528d9327a1092e7fd793
+input tokens 1099 of budget 24000 (margin 20%) · payload sha256 5a4e76eccc7db041a0e585d93fc451630f6ca1c73c740db63c7314bb00c0023b
+
+included
+  governance.instructions     agent:triage@a17be03                                   143 tok
+  governance.instructions     repo:AGENTS.md@4f9c2e1a7b3d                             61 tok
+  governance.output_contract  contract:triage-result/v3                              118 tok
+  state.task                  state:work-item                                         51 tok
+  state.user                  state:requester                                         38 tok
+  interaction.memory          run:triage/18800#summary                                29 tok
+  evidence.knowledge          dup:issue/7012                                          49 tok
+  evidence.knowledge          dup:issue/7700                                          38 tok
+  interaction.history         turn:comment/90011@maintainer-a                         26 tok
+  interaction.history         turn:comment/90020                                      37 tok
+  evidence.tool_results       obs:issue/7811/0-body@newcontrib                        86 tok
+  evidence.tool_results       obs:issue/7811/c90034@drive-by-1                        21 tok
+  evidence.tool_results       obs:issue/7811/c90035@drive-by-1                        18 tok
+  evidence.tool_results       obs:issue/7811/c90040@newcontrib                        45 tok
+  governance.examples         example:triage/duplicate                                85 tok
+  interaction.query           query:triage/run-18950                                  47 tok
+
+excluded
+  producer  -                      run:triage/17002#summary                         expired
+  assembler evidence.knowledge     dup:issue/6100                                   below_threshold
+  assembler state.task             state:ci-summary                                 stale_state
+  assembler evidence.tool_results  obs:issue/7811/c90031@drive-by-1                 duplicate_content (keeps obs:issue/7811/c90033@drive-by-1)
+  assembler evidence.tool_results  obs:issue/7811/c90032@drive-by-1                 duplicate_content (keeps obs:issue/7811/c90033@drive-by-1)
+  assembler evidence.tool_results  obs:issue/7811/c90033@drive-by-1                 source_diversity_cap

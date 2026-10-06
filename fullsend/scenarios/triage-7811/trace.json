@@ -1,0 +1,508 @@
+{
+  "budget": {
+    "input": 24000,
+    "margin_percent": 20,
+    "reserved_output": 176000
+  },
+  "compressed": [],
+  "conflicts": [],
+  "context": {
+    "assembly_time": "2026-10-06T14:00:00Z",
+    "renderer": "cwa-messages/v1",
+    "route_policy_version": "fullsend-triage/v1",
+    "snapshot_digest": "1183b9e278414125a42ae37b7560b35884ed2be60880528d9327a1092e7fd793",
+    "spec": "cwa/draft",
+    "tokenizer": "estimate-utf8/v1"
+  },
+  "defaults_filled": [
+    {
+      "field": "token_budget",
+      "item_id": "agent:triage@a17be03"
+    },
+    {
+      "field": "variants",
+      "item_id": "agent:triage@a17be03"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "agent:triage@a17be03"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "contract:triage-result/v3"
+    },
+    {
+      "field": "variants",
+      "item_id": "contract:triage-result/v3"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "contract:triage-result/v3"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "dup:issue/6100"
+    },
+    {
+      "field": "variants",
+      "item_id": "dup:issue/6100"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "dup:issue/6100"
+    },
+    {
+      "field": "lineage",
+      "item_id": "dup:issue/6100"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "dup:issue/7012"
+    },
+    {
+      "field": "variants",
+      "item_id": "dup:issue/7012"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "dup:issue/7012"
+    },
+    {
+      "field": "lineage",
+      "item_id": "dup:issue/7012"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "dup:issue/7700"
+    },
+    {
+      "field": "variants",
+      "item_id": "dup:issue/7700"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "dup:issue/7700"
+    },
+    {
+      "field": "lineage",
+      "item_id": "dup:issue/7700"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "example:triage/duplicate"
+    },
+    {
+      "field": "variants",
+      "item_id": "example:triage/duplicate"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "example:triage/duplicate"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "obs:issue/7811/0-body@newcontrib"
+    },
+    {
+      "field": "variants",
+      "item_id": "obs:issue/7811/0-body@newcontrib"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "obs:issue/7811/0-body@newcontrib"
+    },
+    {
+      "field": "lineage",
+      "item_id": "obs:issue/7811/0-body@newcontrib"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "obs:issue/7811/c90031@drive-by-1"
+    },
+    {
+      "field": "variants",
+      "item_id": "obs:issue/7811/c90031@drive-by-1"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "obs:issue/7811/c90031@drive-by-1"
+    },
+    {
+      "field": "lineage",
+      "item_id": "obs:issue/7811/c90031@drive-by-1"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "obs:issue/7811/c90032@drive-by-1"
+    },
+    {
+      "field": "variants",
+      "item_id": "obs:issue/7811/c90032@drive-by-1"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "obs:issue/7811/c90032@drive-by-1"
+    },
+    {
+      "field": "lineage",
+      "item_id": "obs:issue/7811/c90032@drive-by-1"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "obs:issue/7811/c90033@drive-by-1"
+    },
+    {
+      "field": "variants",
+      "item_id": "obs:issue/7811/c90033@drive-by-1"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "obs:issue/7811/c90033@drive-by-1"
+    },
+    {
+      "field": "lineage",
+      "item_id": "obs:issue/7811/c90033@drive-by-1"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "obs:issue/7811/c90034@drive-by-1"
+    },
+    {
+      "field": "variants",
+      "item_id": "obs:issue/7811/c90034@drive-by-1"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "obs:issue/7811/c90034@drive-by-1"
+    },
+    {
+      "field": "lineage",
+      "item_id": "obs:issue/7811/c90034@drive-by-1"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "obs:issue/7811/c90035@drive-by-1"
+    },
+    {
+      "field": "variants",
+      "item_id": "obs:issue/7811/c90035@drive-by-1"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "obs:issue/7811/c90035@drive-by-1"
+    },
+    {
+      "field": "lineage",
+      "item_id": "obs:issue/7811/c90035@drive-by-1"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "obs:issue/7811/c90040@newcontrib"
+    },
+    {
+      "field": "variants",
+      "item_id": "obs:issue/7811/c90040@newcontrib"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "obs:issue/7811/c90040@newcontrib"
+    },
+    {
+      "field": "lineage",
+      "item_id": "obs:issue/7811/c90040@newcontrib"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "query:triage/run-18950"
+    },
+    {
+      "field": "variants",
+      "item_id": "query:triage/run-18950"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "query:triage/run-18950"
+    },
+    {
+      "field": "lineage",
+      "item_id": "query:triage/run-18950"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "repo:AGENTS.md@4f9c2e1a7b3d"
+    },
+    {
+      "field": "variants",
+      "item_id": "repo:AGENTS.md@4f9c2e1a7b3d"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "repo:AGENTS.md@4f9c2e1a7b3d"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "run:triage/18800#summary"
+    },
+    {
+      "field": "variants",
+      "item_id": "run:triage/18800#summary"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "run:triage/18800#summary"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "state:ci-summary"
+    },
+    {
+      "field": "variants",
+      "item_id": "state:ci-summary"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "state:ci-summary"
+    },
+    {
+      "field": "lineage",
+      "item_id": "state:ci-summary"
+    },
+    {
+      "field": "injection_risk",
+      "item_id": "state:ci-summary"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "state:requester"
+    },
+    {
+      "field": "variants",
+      "item_id": "state:requester"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "state:requester"
+    },
+    {
+      "field": "lineage",
+      "item_id": "state:requester"
+    },
+    {
+      "field": "injection_risk",
+      "item_id": "state:requester"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "state:work-item"
+    },
+    {
+      "field": "variants",
+      "item_id": "state:work-item"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "state:work-item"
+    },
+    {
+      "field": "lineage",
+      "item_id": "state:work-item"
+    },
+    {
+      "field": "injection_risk",
+      "item_id": "state:work-item"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "turn:comment/90011@maintainer-a"
+    },
+    {
+      "field": "variants",
+      "item_id": "turn:comment/90011@maintainer-a"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "turn:comment/90011@maintainer-a"
+    },
+    {
+      "field": "lineage",
+      "item_id": "turn:comment/90011@maintainer-a"
+    },
+    {
+      "field": "token_budget",
+      "item_id": "turn:comment/90020"
+    },
+    {
+      "field": "variants",
+      "item_id": "turn:comment/90020"
+    },
+    {
+      "field": "conflict_policy",
+      "item_id": "turn:comment/90020"
+    }
+  ],
+  "excluded": [
+    {
+      "item_id": "run:triage/17002#summary",
+      "reason": "expired",
+      "stage": "producer"
+    },
+    {
+      "item_id": "dup:issue/6100",
+      "reason": "below_threshold",
+      "slot": "evidence.knowledge",
+      "stage": "assembler"
+    },
+    {
+      "item_id": "state:ci-summary",
+      "reason": "stale_state",
+      "slot": "state.task",
+      "stage": "assembler"
+    },
+    {
+      "duplicate_of": "obs:issue/7811/c90033@drive-by-1",
+      "item_id": "obs:issue/7811/c90031@drive-by-1",
+      "reason": "duplicate_content",
+      "slot": "evidence.tool_results",
+      "stage": "assembler"
+    },
+    {
+      "duplicate_of": "obs:issue/7811/c90033@drive-by-1",
+      "item_id": "obs:issue/7811/c90032@drive-by-1",
+      "reason": "duplicate_content",
+      "slot": "evidence.tool_results",
+      "stage": "assembler"
+    },
+    {
+      "item_id": "obs:issue/7811/c90033@drive-by-1",
+      "reason": "source_diversity_cap",
+      "slot": "evidence.tool_results",
+      "stage": "assembler"
+    }
+  ],
+  "included": [
+    {
+      "eligibility": "agent definition pinned by sha in .fullsend/config.yaml",
+      "item_id": "agent:triage@a17be03",
+      "slot": "governance.instructions",
+      "source_version": "a17be03",
+      "tokens": 143
+    },
+    {
+      "eligibility": "read from the protected base branch at a pinned SHA, never from the PR head",
+      "item_id": "repo:AGENTS.md@4f9c2e1a7b3d",
+      "slot": "governance.instructions",
+      "source_version": "4f9c2e1a7b3d",
+      "tokens": 61
+    },
+    {
+      "eligibility": "harness validation_loop.schema (ADR 0022)",
+      "item_id": "contract:triage-result/v3",
+      "slot": "governance.output_contract",
+      "source_version": "v3",
+      "tokens": 118
+    },
+    {
+      "eligibility": "forge read at freeze time",
+      "item_id": "state:work-item",
+      "slot": "state.task",
+      "source_version": "2026-10-05T16:40:00Z",
+      "tokens": 51
+    },
+    {
+      "eligibility": "dispatch authorization result",
+      "item_id": "state:requester",
+      "slot": "state.user",
+      "source_version": "2026-10-06T13:58:30Z",
+      "tokens": 38
+    },
+    {
+      "eligibility": "this agent's own earlier run on this work item",
+      "item_id": "run:triage/18800#summary",
+      "slot": "interaction.memory",
+      "source_version": "18800",
+      "tokens": 29
+    },
+    {
+      "eligibility": "similarity score from the duplicate index",
+      "item_id": "dup:issue/7012",
+      "slot": "evidence.knowledge",
+      "source_version": "2026-08-30T08:00:00Z",
+      "tokens": 49
+    },
+    {
+      "eligibility": "similarity score from the duplicate index",
+      "item_id": "dup:issue/7700",
+      "slot": "evidence.knowledge",
+      "source_version": "2026-10-01T15:20:00Z",
+      "tokens": 38
+    },
+    {
+      "eligibility": "author permission 'write' >= triage",
+      "item_id": "turn:comment/90011@maintainer-a",
+      "slot": "interaction.history",
+      "source_version": "90011",
+      "tokens": 26
+    },
+    {
+      "eligibility": "fullsend's own earlier comment",
+      "item_id": "turn:comment/90020",
+      "slot": "interaction.history",
+      "source_version": "90020",
+      "tokens": 37
+    },
+    {
+      "eligibility": "author permission 'read' below triage: data only",
+      "item_id": "obs:issue/7811/0-body@newcontrib",
+      "slot": "evidence.tool_results",
+      "source_version": "body",
+      "tokens": 86
+    },
+    {
+      "eligibility": "author permission 'read' below triage: data only",
+      "item_id": "obs:issue/7811/c90034@drive-by-1",
+      "slot": "evidence.tool_results",
+      "source_version": "90034",
+      "tokens": 21
+    },
+    {
+      "eligibility": "author permission 'read' below triage: data only",
+      "item_id": "obs:issue/7811/c90035@drive-by-1",
+      "slot": "evidence.tool_results",
+      "source_version": "90035",
+      "tokens": 18
+    },
+    {
+      "eligibility": "author permission 'read' below triage: data only",
+      "item_id": "obs:issue/7811/c90040@newcontrib",
+      "slot": "evidence.tool_results",
+      "source_version": "90040",
+      "tokens": 45
+    },
+    {
+      "eligibility": "steering example for the decision vocabulary",
+      "item_id": "example:triage/duplicate",
+      "slot": "governance.examples",
+      "source_version": "a17be03",
+      "tokens": 85
+    },
+    {
+      "eligibility": "templated from the normalized event",
+      "item_id": "query:triage/run-18950",
+      "slot": "interaction.query",
+      "source_version": "normevent/v1",
+      "tokens": 47
+    }
+  ],
+  "profile": {
+    "id": "fullsend-triage-briefing",
+    "version": 1
+  },
+  "refused": {
+    "bool": false,
+    "reason": null
+  },
+  "result": {
+    "hash": "5a4e76eccc7db041a0e585d93fc451630f6ca1c73c740db63c7314bb00c0023b",
+    "input_tokens": 1099
+  }
+}

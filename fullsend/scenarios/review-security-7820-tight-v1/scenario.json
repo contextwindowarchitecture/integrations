@@ -1,0 +1,7 @@
+{
+  "description": "The same review under budget pressure on route v1, which sheds memory first and loses a high-severity prior finding.",
+  "agent": "review-security",
+  "fixture": "pr-7820",
+  "route_policy": "fullsend-review-security/v1",
+  "budget_input": 760
+}

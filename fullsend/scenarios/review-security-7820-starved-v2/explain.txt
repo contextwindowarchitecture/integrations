@@ -1,0 +1,17 @@
+profile fullsend-review-security-briefing v2 · snapshot 3a7e7cb1c4c2e7df21c3068e50515f1a4b7f9324831aaf4ccd1becec159b46a3
+REFUSED: evidence_required -> recovery precompute_summary
+
+included
+
+excluded
+  producer  -                      run:review/18990#F2                              revoked
+  assembler interaction.memory     run:review/18990#F3                              conflict_lost
+  assembler evidence.tool_results  ci:unit-tests@9f1e77aa                           superseded (keeps ci:unit-tests@abc1230f)
+  assembler state.user             state:requester                                  over_budget
+  assembler evidence.tool_results  diff:docs/guides/user/runtime-flags.md@abc1230f  over_budget
+  assembler evidence.tool_results  diff:internal/runtime/claude_test.go@abc1230f    over_budget
+  assembler evidence.tool_results  ci:unit-tests@abc1230f                           over_budget
+  assembler evidence.tool_results  diff:internal/runtime/claude.go@abc1230f         over_budget
+
+conflicts
+  fact:ci.unit-tests.status [fact] resolved by policy, winner ci:unit-tests@abc1230f

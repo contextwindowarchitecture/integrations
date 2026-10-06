@@ -1,0 +1,401 @@
+[
+  {
+    "route": "fullsend/triage",
+    "version": "fullsend-triage/v1",
+    "clock_skew_seconds": 5,
+    "parser": true,
+    "producers": {
+      "agent-registry": {
+        "kind": "policy",
+        "slots": [
+          "governance.instructions",
+          "governance.examples",
+          "governance.output_contract"
+        ]
+      },
+      "repo-policy": {
+        "kind": "policy",
+        "slots": [
+          "governance.instructions"
+        ]
+      },
+      "forge-state": {
+        "kind": "state",
+        "slots": [
+          "state.task",
+          "state.user"
+        ]
+      },
+      "dispatch": {
+        "kind": "interaction",
+        "slots": [
+          "interaction.query"
+        ]
+      },
+      "forge-thread": {
+        "kind": "interaction",
+        "slots": [
+          "interaction.history"
+        ]
+      },
+      "forge-observer": {
+        "kind": "retrieval",
+        "slots": [
+          "evidence.tool_results"
+        ]
+      },
+      "duplicate-index": {
+        "kind": "retrieval",
+        "slots": [
+          "evidence.knowledge"
+        ]
+      },
+      "run-memory": {
+        "kind": "memory",
+        "slots": [
+          "interaction.memory"
+        ]
+      }
+    },
+    "slots": {
+      "state.task": {
+        "max_age_seconds": 300,
+        "required_scope": [
+          "tenant",
+          "task"
+        ]
+      },
+      "state.user": {
+        "max_age_seconds": 300,
+        "required_scope": [
+          "tenant",
+          "user"
+        ]
+      },
+      "evidence.knowledge": {
+        "min_relevance": 0.55,
+        "required_scope": [
+          "tenant"
+        ],
+        "order_by": [
+          "-relevance"
+        ],
+        "max_per_source": 1,
+        "max_tokens": 6000
+      },
+      "evidence.tool_results": {
+        "required_scope": [
+          "tenant",
+          "task"
+        ],
+        "order_by": [
+          "-freshness"
+        ],
+        "dedupe": "exact",
+        "max_per_source": 2,
+        "max_tokens": 8000
+      },
+      "interaction.history": {
+        "required_scope": [
+          "tenant",
+          "task"
+        ],
+        "max_tokens": 12000
+      },
+      "interaction.memory": {
+        "source_prefix": "run:",
+        "required_scope": [
+          "tenant",
+          "task"
+        ]
+      }
+    }
+  },
+  {
+    "route": "fullsend/review-security",
+    "version": "fullsend-review-security/v1",
+    "clock_skew_seconds": 5,
+    "parser": true,
+    "requires_evidence": true,
+    "producers": {
+      "agent-registry": {
+        "kind": "policy",
+        "slots": [
+          "governance.instructions",
+          "governance.output_contract"
+        ]
+      },
+      "repo-policy": {
+        "kind": "policy",
+        "slots": [
+          "governance.instructions"
+        ]
+      },
+      "forge-state": {
+        "kind": "state",
+        "slots": [
+          "state.task",
+          "state.user"
+        ]
+      },
+      "dispatch": {
+        "kind": "interaction",
+        "slots": [
+          "interaction.query"
+        ]
+      },
+      "forge-diff": {
+        "kind": "retrieval",
+        "slots": [
+          "evidence.tool_results"
+        ]
+      },
+      "ci-checks": {
+        "kind": "retrieval",
+        "slots": [
+          "evidence.tool_results"
+        ]
+      },
+      "review-memory": {
+        "kind": "memory",
+        "slots": [
+          "interaction.memory"
+        ]
+      }
+    },
+    "slots": {
+      "state.task": {
+        "max_age_seconds": 300,
+        "required_scope": [
+          "tenant",
+          "task"
+        ]
+      },
+      "state.user": {
+        "max_age_seconds": 300,
+        "required_scope": [
+          "tenant",
+          "user"
+        ]
+      },
+      "evidence.tool_results": {
+        "required_scope": [
+          "tenant",
+          "task"
+        ],
+        "supersede": "source",
+        "min_included": 1
+      },
+      "interaction.memory": {
+        "source_prefix": "run:",
+        "required_scope": [
+          "tenant",
+          "task"
+        ]
+      }
+    },
+    "fitting_order": [
+      {
+        "slot": "interaction.memory",
+        "action": "omit"
+      },
+      {
+        "slot": "evidence.tool_results",
+        "action": "compress"
+      },
+      {
+        "slot": "evidence.tool_results",
+        "action": "omit"
+      }
+    ],
+    "facts": {
+      "ci.unit-tests.status": {
+        "precedence": [
+          "ci-checks"
+        ],
+        "on_unresolved": "surface"
+      }
+    }
+  },
+  {
+    "route": "fullsend/review-security",
+    "version": "fullsend-review-security/v2",
+    "clock_skew_seconds": 5,
+    "parser": true,
+    "requires_evidence": true,
+    "producers": {
+      "agent-registry": {
+        "kind": "policy",
+        "slots": [
+          "governance.instructions",
+          "governance.output_contract"
+        ]
+      },
+      "repo-policy": {
+        "kind": "policy",
+        "slots": [
+          "governance.instructions"
+        ]
+      },
+      "forge-state": {
+        "kind": "state",
+        "slots": [
+          "state.task",
+          "state.user"
+        ]
+      },
+      "dispatch": {
+        "kind": "interaction",
+        "slots": [
+          "interaction.query"
+        ]
+      },
+      "forge-diff": {
+        "kind": "retrieval",
+        "slots": [
+          "evidence.tool_results"
+        ]
+      },
+      "ci-checks": {
+        "kind": "retrieval",
+        "slots": [
+          "evidence.tool_results"
+        ]
+      },
+      "review-memory": {
+        "kind": "memory",
+        "slots": [
+          "interaction.memory"
+        ]
+      }
+    },
+    "slots": {
+      "state.task": {
+        "max_age_seconds": 300,
+        "required_scope": [
+          "tenant",
+          "task"
+        ]
+      },
+      "state.user": {
+        "max_age_seconds": 300,
+        "required_scope": [
+          "tenant",
+          "user"
+        ]
+      },
+      "evidence.tool_results": {
+        "required_scope": [
+          "tenant",
+          "task"
+        ],
+        "supersede": "source",
+        "min_included": 1,
+        "order_by": [
+          "-relevance",
+          "-freshness"
+        ]
+      },
+      "interaction.memory": {
+        "source_prefix": "run:",
+        "required_scope": [
+          "tenant",
+          "task"
+        ]
+      }
+    },
+    "fitting_order": [
+      {
+        "slot": "evidence.tool_results",
+        "action": "compress"
+      },
+      {
+        "slot": "evidence.tool_results",
+        "action": "omit"
+      }
+    ],
+    "facts": {
+      "ci.unit-tests.status": {
+        "precedence": [
+          "ci-checks"
+        ],
+        "on_unresolved": "surface"
+      }
+    },
+    "tier_upgrades": {
+      "interaction.memory": "protected"
+    }
+  },
+  {
+    "route": "fullsend/fix",
+    "version": "fullsend-fix/v1",
+    "clock_skew_seconds": 5,
+    "parser": true,
+    "requires_evidence": true,
+    "on_unresolved_instruction": "request_context",
+    "producers": {
+      "agent-registry": {
+        "kind": "policy",
+        "slots": [
+          "governance.instructions",
+          "governance.output_contract"
+        ]
+      },
+      "repo-policy": {
+        "kind": "policy",
+        "slots": [
+          "governance.instructions"
+        ]
+      },
+      "forge-state": {
+        "kind": "state",
+        "slots": [
+          "state.task",
+          "state.user"
+        ]
+      },
+      "dispatch": {
+        "kind": "interaction",
+        "slots": [
+          "interaction.query"
+        ]
+      },
+      "forge-diff": {
+        "kind": "retrieval",
+        "slots": [
+          "evidence.tool_results"
+        ]
+      },
+      "review-memory": {
+        "kind": "memory",
+        "slots": [
+          "interaction.memory"
+        ]
+      }
+    },
+    "slots": {
+      "state.task": {
+        "max_age_seconds": 300,
+        "required_scope": [
+          "tenant",
+          "task"
+        ]
+      },
+      "evidence.tool_results": {
+        "required_scope": [
+          "tenant",
+          "task"
+        ],
+        "supersede": "source",
+        "min_included": 1
+      },
+      "interaction.memory": {
+        "source_prefix": "run:",
+        "required_scope": [
+          "tenant",
+          "task"
+        ]
+      }
+    }
+  }
+]

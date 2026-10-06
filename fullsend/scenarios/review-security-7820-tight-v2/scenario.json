@@ -1,0 +1,7 @@
+{
+  "description": "The same pressure on route v2, which protects unresolved findings and keeps the riskiest file whole.",
+  "agent": "review-security",
+  "fixture": "pr-7820",
+  "route_policy": "fullsend-review-security/v2",
+  "budget_input": 760
+}
