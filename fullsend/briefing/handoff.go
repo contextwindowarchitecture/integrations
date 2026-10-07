@@ -12,7 +12,7 @@ import (
 // handoff adds, and Handoff.Attributes records it by hashing what the runtime receives.
 const SystemSeparator = "\n\n"
 
-// Handoff is the payload mapped onto the two seams every fullsend runtime already takes:
+// Handoff is the payload mapped onto the two inputs every fullsend runtime already takes:
 //
 //   - AgentDefinition is the agent body: claude's --agent file, pi's APPEND_SYSTEM.md, codex's developer_instructions;
 //   - Prompt replaces the constant "Run the agent task" (RunParams.Prompt), sent on stdin so a large briefing does

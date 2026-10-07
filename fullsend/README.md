@@ -8,7 +8,7 @@ Today every fullsend agent starts with its agent definition and one prompt: `Run
 - **No record of what the agent was told.** Nothing shows what the agent read, what it skipped, or why.
 - **Nothing bounds or orders it.** When there is too much to read, nothing decides what matters most.
 
-ADR 0133 proposes one change in `fullsend run`. Before the sandbox starts, the runner reads those sources itself and assembles the agent's starting context, its **briefing**. It then hands the briefing to Claude Code, pi or codex through the two seams it already uses: the agent definition and the prompt.
+ADR 0133 proposes one change in `fullsend run`. Before the sandbox starts, the runner reads those sources itself and assembles the agent's starting context, its **briefing**. It then hands the briefing to Claude Code, pi or codex in the two places it already passes them text: the agent definition and the prompt.
 
 The assembly follows [Context Window Architecture](https://contextwindowarchitecture.io) (CWA), an open specification, and uses its Go assembler. It never calls a model. Every piece of text is labeled with who wrote it and whether it may direct the agent, and repository permission decides that, never the wording. The result is fitted to a budget, and a trace records everything included or left out.
 
@@ -220,7 +220,7 @@ Verified in fullsend at [`d8560dc`](https://github.com/fullsend-ai/fullsend/tree
 | The only prompt text fullsend writes at run time is validation feedback on retry, fenced in `<validation-output>`. | [internal/cli/run.go:3490](https://github.com/fullsend-ai/fullsend/blob/d8560dcc4f4920618f8eba3afd6c56e60263502a/internal/cli/run.go#L3490) `buildFeedbackPrompt` |
 | Issue, PR and comment text is fetched *by the agent* mid-loop (`gh`, `fullsend issues get`), not assembled. Only a few channels are prefetched: `agent-input/`, `env.sandbox`, `prior-review.txt`, `HUMAN_INSTRUCTION`. | [internal/cli/run.go:2147](https://github.com/fullsend-ai/fullsend/blob/d8560dcc4f4920618f8eba3afd6c56e60263502a/internal/cli/run.go#L2147), `docs/agents/*.md` |
 | `fullsend scan input`, the event-payload injection scan, is wired only into a test workflow. | `.github/workflows/runner-image.yml` |
-| Inside the loop the only seam is PostToolUse hooks, which can rewrite tool output (`updatedToolOutput`). | [fullsend-hooks.js:277](https://github.com/fullsend-ai/fullsend/blob/d8560dcc4f4920618f8eba3afd6c56e60263502a/internal/runtime/pi_extension/fullsend-hooks.js#L277), ADR 0090 |
+| Inside the loop, the only place fullsend can change what the model sees is the PostToolUse hooks, which can rewrite tool output (`updatedToolOutput`). | [fullsend-hooks.js:277](https://github.com/fullsend-ai/fullsend/blob/d8560dcc4f4920618f8eba3afd6c56e60263502a/internal/runtime/pi_extension/fullsend-hooks.js#L277), ADR 0090 |
 | Telemetry records token totals and the harness SHA, but not the system prompt or the per-request input context. | `internal/telemetry/content.go`, ADR 0050 |
 
 ```mermaid
