@@ -16,9 +16,10 @@ flowchart LR
 
 ## Integrations
 
+None yet; each integration adds its row here when it lands.
+
 | Integration | Host system | What CWA does there | Language | Status |
 | --- | --- | --- | --- | --- |
-| [fullsend](fullsend/) | [fullsend](https://github.com/fullsend-ai/fullsend), autonomous SDLC agents on Git forges | Assembles each agent's briefing before its sandbox starts: repository permission decides who may instruct, comment floods are capped, memory expires and is revocable, `/fs-fix` instructions direct the fix while `AGENTS.md` still outranks them, and a budget too small for a security review refuses instead of reviewing blind. The upstream proposal is fullsend's ADR 0133 | Go, [assembler-go](https://github.com/contextwindowarchitecture/assembler-go) | prototype |
 
 ## How an integration is laid out
 
@@ -35,12 +36,12 @@ Each integration is a top-level folder named after the host system, written in t
 ## Running one
 
 ```sh
-cd fullsend
+cd <integration>
 go test ./...
-go run ./cmd/after triage-7811
+go run ./cmd/scenarios -check
 ```
 
-Each integration's README lists its commands.
+That is the shape for a Go integration; each integration's README lists its own commands.
 
 ## Context as a reviewed artifact
 

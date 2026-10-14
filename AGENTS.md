@@ -4,7 +4,7 @@ Instructions for coding agents and contributors working in `integrations`, where
 
 ## Layout
 
-Each integration is a top-level folder named after its host system (`fullsend/`), self-contained, in the host's language, with its own README, suite, registry, fixtures and committed scenarios. The root README's table lists every integration; add a row when you add one.
+Each integration is a top-level folder named after its host system (`<host>/`), self-contained, in the host's language, with its own README, suite, registry, fixtures and committed scenarios. The root README's table lists every integration; add a row when you add one.
 
 ## Commands
 
@@ -37,7 +37,7 @@ Behavior changes follow red → green → refactor. Before claiming a test prote
 
 ## Commits
 
-- **Conventional Commits 1.0.0, signed off.** `git commit -s` with `type(scope): summary` in the imperative mood, lower case, no trailing period, at most 72 characters. Types: `feat`, `fix`, `test`, `refactor`, `docs`, `build`, `ci`, `chore`. Scopes: the integration's folder name (`fullsend`), or `repo` and `ci` for shared files. Don't add `Co-Authored-By` trailers.
+- **Conventional Commits 1.0.0, signed off.** `git commit -s` with `type(scope): summary` in the imperative mood, lower case, no trailing period, at most 72 characters. Types: `feat`, `fix`, `test`, `refactor`, `docs`, `build`, `ci`, `chore`. Scopes: the integration's folder name (`<host>`), or `repo` and `ci` for shared files. Don't add `Co-Authored-By` trailers.
 - **One behavior, or one refactor, per commit.** Every commit passes the suite of every integration it touches.
 - **Never push, and never tag.** The remote is `origin` (https://github.com/contextwindowarchitecture/integrations). The maintainer publishes commits.
 - Stage paths explicitly. Never commit `.env`, build output or anything under `.claude/`.
